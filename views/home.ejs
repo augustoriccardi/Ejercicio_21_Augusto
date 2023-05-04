@@ -18,7 +18,22 @@
     <link rel="stylesheet" href="/css/home.css" />
   </head>
   <body>
-    <%- include("./partials/navbar.ejs") %> <%- include("./partials/footer.ejs") %>
+    <%- include("./partials/navbar.ejs") %>
+    <div class="container" style="margin-top: 80px">
+      <ul>
+        <% for (let i = 0; i < articles.length; i++) { %>
+        <li class="li">
+          <div class="row">
+            <div class="col-md-6 offset-md-3">
+              <a class="alink" href="/articulos/<%= articles[i].id %>"><%= articles[i].title %></a>
+              <p>Alex Garcia - 2023/05/04<!-- <% articles[i].content %> --></p>
+            </div>
+          </div>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+    <%- include("./partials/footer.ejs") %>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
       integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
