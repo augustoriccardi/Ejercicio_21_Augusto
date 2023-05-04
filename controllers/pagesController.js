@@ -17,10 +17,17 @@
  */
 
 const { Article } = require("../models");
-
 async function showHome(req, res) {
-  const articles = await Article.findAll();
-  res.render("home", { articles });
+  try {
+    const articles = await Article.findAll({
+      order: [["createdAt", "DESC"]],
+      limit: 4,
+    });
+    res.render("home", { articles });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error de servidor");
+  }
 }
 
 async function showContact(req, res) {

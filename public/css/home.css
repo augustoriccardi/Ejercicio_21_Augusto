@@ -1,3 +1,12 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
   .aTextMain {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
     font-style: oblique;
@@ -12,16 +21,23 @@
     border: 0px;
   }
 
+  .alink {
+    text-decoration: none;
+    font-weight: bolder;
+    color: black;
+    font-size: 30px;
+    list-style-type: none;
+  }
+
+  .li {
+    list-style-type: none;
+  }
+
   hr {
-    border-color: gray;
+    border-color: rgb(56, 56, 56);
     border-width: 1px;
   }
   
-  footer {
-    background-color: rgb(255, 255, 255);
-    padding: 20px 0;
-  }
-
   .icon-link {
     display: inline-flex;
     justify-content: center;
@@ -40,4 +56,13 @@
 
   .textofooter {
     color: grey;
+  }
+  
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 138px;
+    background-color: rgb(255, 255, 255); 
+    padding: 20px 0;
   }
