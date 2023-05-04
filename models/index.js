@@ -1,11 +1,16 @@
 const { Sequelize } = require("sequelize");
-
-const sequelize = new Sequelize("ha_ejercicio_21", "root", "root", {
-  host: "127.0.0.1",
-  port: "3306",
-  dialect: "mysql",
-  logging: false,
-});
+require("dotenv").config();
+const sequelize = new Sequelize(
+  process.env.DB_DATABASE,
+  process.env.DB_USERNAME,
+  process.env.DB_PASSWORD,
+  {
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    dialect: process.env.DB_CONNECTION,
+    logging: false,
+  },
+);
 
 const User = require("./User");
 const Comment = require("./Comment");
