@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
-
+const comments = require("./Comment");
 class Article extends Model {
   static initModel(sequelize) {
     Article.init(
@@ -21,7 +21,7 @@ class Article extends Model {
         modelName: "article",
       },
     );
-
+    Article.hasMany(comments);
     return Article;
   }
 }
