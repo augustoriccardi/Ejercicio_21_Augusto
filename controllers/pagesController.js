@@ -38,11 +38,15 @@ async function showAboutUs(req, res) {
   res.render("aboutUs");
 }
 
-// Otros handlers...
-// ...
+async function indexjson(req, res) {
+  const article = await Article.findAll();
+  console.log(article);
+  res.json(article);
+}
 
 module.exports = {
   showHome,
   showContact,
   showAboutUs,
+  indexjson,
 };

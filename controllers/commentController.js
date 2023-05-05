@@ -1,27 +1,21 @@
-const { Op } = require("sequelize");
-const { Article } = require("../models");
 const { Comment } = require("../models");
+
 // Display a listing of the resource.
 async function index(req, res) {}
 
 // Display the specified resource.
-async function show(req, res) {
-  const id = req.params.id;
-  const article = await Article.findByPk(id);
-  const comments = await Comment.findAll({
-    where: {
-      articleId: {
-        [Op.eq]: req.params.id,
-      },
-    },
-  });
-  console.log(comments.length);
-  res.render("article", { article, comments });
-}
+async function show(req, res) {}
 
 // Show the form for creating a new resource
-async function create(req, res) {}
+async function create(req, res) {
+  await Comment.create({
+    name: req.body.name,
+    content: req.body.comment,
+    articleId: req.params.id,
+  });
 
+  res.redirect(`/articulos/${req.params.id}`);
+}
 // Store a newly created resource in storage.
 async function store(req, res) {}
 
