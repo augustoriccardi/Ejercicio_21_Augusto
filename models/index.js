@@ -15,13 +15,17 @@ const sequelize = new Sequelize(
 const User = require("./User");
 const Comment = require("./Comment");
 const Article = require("./Article");
-// sequelize.sync({ alter: true });
+
+sequelize.sync({ alter: true });
+
 User.initModel(sequelize);
 Comment.initModel(sequelize);
 Article.initModel(sequelize);
 
 Comment.belongsTo(Article);
 Article.hasMany(Comment);
+Article.belongsTo(User);
+User.hasMany(Article);
 
 module.exports = {
   sequelize,

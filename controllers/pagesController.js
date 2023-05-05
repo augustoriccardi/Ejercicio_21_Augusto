@@ -17,12 +17,15 @@
  */
 
 const { Article } = require("../models");
+const { User } = require("../models");
 async function showHome(req, res) {
   try {
     const articles = await Article.findAll({
       order: [["createdAt", "DESC"]],
       limit: 4,
+      include: User,
     });
+    console.log(articles);
     res.render("home", { articles });
   } catch (error) {
     console.error(error);
@@ -40,7 +43,6 @@ async function showAboutUs(req, res) {
 
 async function indexjson(req, res) {
   const article = await Article.findAll();
-  console.log(article);
   res.json(article);
 }
 
