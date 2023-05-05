@@ -25,32 +25,26 @@
         <p><%= article.content %></p>
         <p><%= article.content %></p>
         <p><%= article.content %></p>
-        <form action="" class="w-100 d-flex gap-3 flex-column border-top pt-5 mt-5 mb-4">
+        <form
+          action="/comentarios/crear/<%= article.id%>"
+          method="post"
+          class="w-100 d-flex gap-3 flex-column border-top pt-5 mt-5 mb-4"
+        >
           <label for="name"><h2>Add your Commnent</h2></label>
           <input type="text" name="name" id="name" class="form-control" placeholder="Name" />
-          <textarea name="commnet" id="commnet" cols="30" rows="10" class="form-control"></textarea>
+          <textarea name="comment" id="comment" cols="30" rows="10" class="form-control"></textarea>
           <button type="submit" class="btn btn-primary">Send</button>
         </form>
       </article>
 
       <!--Comments zone-->
-      <h2>Comments [Number of comments]</h2>
+      <h2>Comments [<%= comments.length %>]</h2>
+      <% if (comments.length) { for( comment of comments ) { %>
       <div class="border-bottom pt-4 pb-4 mb2">
-        <p>
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea est aliquid minima reiciendis
-          assumenda nihil sunt ipsam dolore! Dolores iste a quae voluptate, tempora hic amet debitis
-          deleniti cumque illum.""
-        </p>
-        <small class="text-muted">date of the comment</small>
+        <p>"<%= comment.content %>"</p>
+        <small class="text-muted"><%=comment.name %></small>
       </div>
-      <div class="border-bottom pt-4 pb-4 mb2">
-        <p>
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea est aliquid minima reiciendis
-          assumenda nihil sunt ipsam dolore! Dolores iste a quae voluptate, tempora hic amet debitis
-          deleniti cumque illum.""
-        </p>
-        <small class="text-muted">date of the comment</small>
-      </div>
+      <% } } %>
     </main>
     <%- include("./partials/footer.ejs") %>
   </body>
