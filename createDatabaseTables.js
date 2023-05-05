@@ -16,10 +16,10 @@
  */
 
 require("dotenv").config();
-const db = require("./models");
+const { sequelize } = require("./models");
 
 async function createDatabaseTables() {
-  await db.sequelize.sync({ force: true });
+  await sequelize.sync({ alter: true });
   console.log("[Database] ¡Las tablas fueron creadas!");
 }
 

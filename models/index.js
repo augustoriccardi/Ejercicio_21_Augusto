@@ -16,8 +16,6 @@ const User = require("./User");
 const Comment = require("./Comment");
 const Article = require("./Article");
 
-sequelize.sync({ alter: true });
-
 User.initModel(sequelize);
 Comment.initModel(sequelize);
 Article.initModel(sequelize);
