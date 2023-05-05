@@ -45,10 +45,14 @@ async function indexjson(req, res) {
   const article = await Article.findAll();
   res.json(article);
 }
+async function indexAdmin(req, res) {
+  res.send("hola");
+}
 
 module.exports = {
   showHome,
   showContact,
   showAboutUs,
   indexjson,
+  indexAdmin,
 };

@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const pagesController = require("../controllers/pagesController");
-const adminController = require("../controllers/articleController");
 
 router.get("/", pagesController.showHome);
 router.get("/api/articulos", pagesController.indexjson);
-router.get("/admin", adminController.index);
+router.get("/admin", pagesController.indexAdmin);
 module.exports = router;
