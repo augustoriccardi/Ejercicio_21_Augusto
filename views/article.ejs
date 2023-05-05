@@ -38,8 +38,8 @@
       </article>
 
       <!--Comments zone-->
-      <h2>Comments [<%= comments.length %>]</h2>
-      <% if (comments.length) { for( comment of comments ) { %>
+      <h2>Comments [<%= article.comments.length %>]</h2>
+      <% if (article.comments.length) { for( comment of article.comments ) { %>
       <div class="border-bottom pt-4 pb-4 mb2">
         <p>"<%= comment.content %>"</p>
         <small class="text-muted"><%=comment.name %></small>

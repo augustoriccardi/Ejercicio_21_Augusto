@@ -23,6 +23,7 @@ Comment.initModel(sequelize);
 Article.initModel(sequelize);
 
 Comment.belongsTo(Article);
+Article.hasMany(Comment);
 
 module.exports = {
   sequelize,
