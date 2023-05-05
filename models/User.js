@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
+const Article = require("./Article");
 
 class User extends Model {
   static initModel(sequelize) {
@@ -13,9 +14,6 @@ class User extends Model {
           type: DataTypes.STRING,
         },
         lastname: {
-          type: DataTypes.STRING,
-        },
-        email: {
           type: DataTypes.STRING,
         },
       },
