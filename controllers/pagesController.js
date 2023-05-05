@@ -46,7 +46,17 @@ async function indexjson(req, res) {
   res.json(article);
 }
 async function indexAdmin(req, res) {
-  res.send("hola");
+  try {
+    const articles = await Article.findAll({
+      order: [["createdAt", "DESC"]],
+      include: User,
+    });
+    console.log(articles);
+    res.render("admin.ejs", { articles });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error de servidor");
+  }
 }
 
 module.exports = {
