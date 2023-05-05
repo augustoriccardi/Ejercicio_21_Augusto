@@ -15,6 +15,9 @@ class User extends Model {
         lastname: {
           type: DataTypes.STRING,
         },
+        email: {
+          type: DataTypes.STRING,
+        },
       },
       {
         sequelize,
