@@ -50,6 +50,7 @@ async function indexAdmin(req, res) {
     const articles = await Article.findAll({
       order: [["createdAt", "DESC"]],
       include: User,
+      limit: 7,
     });
     console.log(articles);
     res.render("admin.ejs", { articles });
