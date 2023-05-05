@@ -26,10 +26,9 @@
           <div class="row">
             <div class="col-md-6 offset-md-3">
               <a class="alink" href="/articulos/<%= articles[i].id %>"><%= articles[i].title %></a>
-              <p>
-                <% if (articles[i].userId != undefined) { %> <%= articles[i].userId %> <%=
-                articles[i].userId %> - <%= articles[i].createdAgo %> <% } %>
-              </p>
+              <% if (articles[i].userId != undefined) { %>
+              <p><%= articles[i].userId %> - <%= articles[i].createdAgo %></p>
+              <% } %>
             </div>
           </div>
         </li>
