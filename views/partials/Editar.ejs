@@ -1,7 +1,19 @@
-<form action="" class="d-flex flex-column gap-4">
-  <label class="form-label" for="title">Edite el titulo de su Articulo:</label>
-  <input class="form-control" type="text" name="title" id="title" placeholder="Titulo..." />
-  <label class="form-label" for="content">Edite el contenido de su Articulo:</label>
+<form
+  action="/articulos/<%= article.id %>?_method=PATCH"
+  method="POST"
+  class="d-flex flex-column gap-4"
+>
+  <input type="hidden" name="_method" value="PATCH" />
+  <label class="form-label" for="title">Edite el titulo del Articulo:</label>
+  <input
+    class="form-control"
+    type="text"
+    name="title"
+    id="title"
+    placeholder="Titulo..."
+    value="<%=article.title %>"
+  />
+  <label class="form-label" for="content">Edite el contenido del Articulo:</label>
   <textarea
     class="form-control"
     name="content"
@@ -9,10 +21,11 @@
     cols="30"
     rows="10"
     placeholder="Contenido..."
-  ></textarea>
-  <!-- Cambiar pora volver al admin-->
+  >
+<%=article.content %></textarea
+  >
   <div class="d-flex justify-content-between">
-    <a href="/" class="btn btn-danger w-25">volver</a>
+    <a href="/admin" class="btn btn-danger w-25">volver</a>
     <button type="submit" class="btn btn-success w-25">Crear</button>
   </div>
 </form>
