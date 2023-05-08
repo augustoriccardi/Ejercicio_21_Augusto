@@ -21,14 +21,17 @@
     <%- include("./partials/navbar.ejs") %>
     <div class="container" style="margin-top: 80px">
       <ul>
-        <% for (let i = 0; i < articles.length; i++) { %>
+        <% for (const art of articles) { %>
         <li class="li">
           <div class="row">
             <div class="col-md-6 offset-md-3">
-              <a class="alink" href="/articulos/<%= articles[i].id %>"><%= articles[i].title %></a>
-              <% if (articles[i].userId != undefined) { %>
-              <p><%= articles[i].userId %> - <%= articles[i].createdAgo %></p>
+              <a class="alink" href="/articulos/<%= art.id %>"><%= art.title %></a>
+              <% if (art.user) { %>
+              <small class="text-muted"
+                >Created By <%= art.user.firstname %> <%= art.user.lastname %></small
+              >
               <% } %>
+              <small class="text-muted"><%= art.createdAgo %></small>
             </div>
           </div>
         </li>
