@@ -2,6 +2,7 @@
   action="/articulos/<%= article.id %>?_method=PATCH"
   method="POST"
   class="d-flex flex-column gap-4"
+  enctype="multipart/form-data"
 >
   <input type="hidden" name="_method" value="PATCH" />
   <label class="form-label" for="title">Edite el titulo del Articulo:</label>
@@ -24,6 +25,18 @@
   >
 <%=article.content %></textarea
   >
+
+  <div class="container d-flex align-items-center justify-content-center flex-column gap-2">
+    <h2>Imagen del Articulo</h2>
+    <img
+      src="/img/bd_img/<%=article.image %>"
+      alt="Imagen articulo <%=article.title %> %>"
+      srcset=""
+      class="img-fluid rounded"
+    />
+  </div>
+  <label for="image" class="form-label">Seleccionar nueva imagen del articulo:</label>
+  <input type="file" name="Image" id="Image" class="btn btn-dark form-control" />
   <div class="d-flex justify-content-between">
     <a href="/admin" class="btn btn-danger w-25">volver</a>
     <button type="submit" class="btn btn-success w-25">Crear</button>

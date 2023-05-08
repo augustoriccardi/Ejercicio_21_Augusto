@@ -16,8 +16,8 @@
  * no debería existir.
  */
 
-const { Article } = require("../models");
-const { User } = require("../models");
+const { Article, User } = require("../models");
+
 async function showHome(req, res) {
   try {
     const articles = await Article.findAll({
@@ -47,7 +47,7 @@ async function indexjson(req, res) {
 async function indexAdmin(req, res) {
   try {
     const articles = await Article.findAll({
-      order: [["createdAt", "DESC"]],
+      order: [["id", "DESC"]],
       include: User,
     });
     res.render("admin.ejs", { articles });

@@ -1,5 +1,5 @@
-const { Article, User } = require("../models");
-const { Comment } = require("../models");
+const { Article, User, Comment } = require("../models");
+const formidable = require("formidable");
 
 async function index(req, res) {
   const articles = await Article.findAll({
@@ -37,18 +37,25 @@ async function edit(req, res) {
 
 // Update the specified resource in storage.
 async function update(req, res) {
-  await Article.update(
-    {
-      title: req.body.title,
-      content: req.body.content,
-    },
-    {
-      where: {
-        id: req.params.id,
+  const form = formidable({
+    multiples: true,
+    uploadDir: "./public/img/bd_img/",
+    keepExtensions: true,
+  });
+  form.parse(req, async (err, fields, files) => {
+    await Article.update(
+      {
+        title: fields.title,
+        content: fields.content,
       },
-    },
-  );
-  res.redirect(`/admin`);
+      {
+        where: {
+          id: req.params.id,
+        },
+      },
+    );
+    res.redirect(`/admin`);
+  });
 }
 
 // Remove the specified resource from storage.
