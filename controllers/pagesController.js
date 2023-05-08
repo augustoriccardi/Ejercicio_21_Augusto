@@ -26,7 +26,7 @@ async function showHome(req, res) {
       include: User,
     });
     console.log(articles);
-    res.render("home", { articles });
+    res.render("home", { articles, header: "home" });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error de servidor");
