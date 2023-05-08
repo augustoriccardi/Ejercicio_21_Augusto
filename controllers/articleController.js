@@ -1,9 +1,19 @@
-const { Article } = require("../models");
+const { Article, User } = require("../models");
 const { Comment } = require("../models");
 
-// Display a listing of the resource.
-async function index(req, res) {}
-
+async function index(req, res) {
+  const articles = await Article.findAll({
+    where: {
+      userId: [2, 3, 4, 5],
+    },
+    include: {
+      model: User,
+      attributes: ["id", "firstname", "lastname"],
+    },
+  });
+  console.log(articles);
+  res.render("home", { articles });
+}
 // Display the specified resource.
 async function show(req, res) {
   const id = req.params.id;
