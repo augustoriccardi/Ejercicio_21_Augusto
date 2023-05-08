@@ -46,7 +46,7 @@
                 <img src="./img/bd_img/<%= article.image %>" class="img-fluid" />
               </td>
               <td><%= article.createdAt %></td>
-              <td></td>
+              <td><%= article.user.firstname %> <%= article.user.lastname %></td>
               <td class="barras d-flex flex-column gap-2">
                 <a href="/articulos/<%= article.id %>/editar" class="btn btn-primary w-100">
                   Editar

@@ -23,7 +23,8 @@ async function show(req, res) {
 
 // Show the form for creating a new resource
 async function create(req, res) {
-  res.render("panel", { modal: "crear" });
+  const article = await Article.findByPk(1);
+  res.render("panel", { modal: "crear", article });
 }
 
 // Store a newly created resource in storage.
