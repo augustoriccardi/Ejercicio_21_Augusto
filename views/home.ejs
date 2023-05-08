@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/css/home.css" />
   </head>
   <body>
-    <%- include("./partials/navbar.ejs") %> <%- include("./partials/header.ejs") %>
+    <%- include('./partials/header', { header: header, articles: articles }) %>
     <div class="container">
       <ul>
         <% for (const art of articles) { %>
@@ -27,9 +27,9 @@
             <div class="col-md-6 offset-md-3">
               <a class="alink" href="/articulos/<%= art.id %>"><%= art.title %></a>
               <% if (art.user) { %>
-              <small class="text-muted"
-                >Created By <%= art.user.firstname %> <%= art.user.lastname %></small
-              >
+              <small class="text-muted">
+                Created By <%= art.user.firstname %> <%= art.user.lastname %>
+              </small>
               <% } %>
               <small class="text-muted"><%= art.createdAgo %></small>
             </div>

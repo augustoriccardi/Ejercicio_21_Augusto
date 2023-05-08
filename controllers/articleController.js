@@ -11,13 +11,12 @@ async function index(req, res) {
       attributes: ["id", "firstname", "lastname"],
     },
   });
-  console.log(articles);
   res.render("home", { articles });
 }
 // Display the specified resource.
 async function show(req, res) {
   const id = req.params.id;
-  const article = await Article.findByPk(id, { include: Comment });
+  const article = await Article.findByPk(id, { include: [{ model: Comment }, { model: User }] });
 
   res.render("article", { article, header: "article" });
 }
