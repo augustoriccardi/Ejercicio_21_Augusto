@@ -18,10 +18,9 @@
     <title>Articulo <%= article.title %></title>
   </head>
   <body class="">
-    <%- include("./partials/navbar.ejs") %>
+    <%- include("./partials/navbar.ejs") %><%- include("./partials/header.ejs") %>
     <main class="container w-75 bg-white p-5">
       <article class="d-flex justify-content-center flex-column gap-2 align-items-center">
-        <h1><%= article.title %></h1>
         <p><%= article.content %></p>
         <p><%= article.content %></p>
         <p><%= article.content %></p>
