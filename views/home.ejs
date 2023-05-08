@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/css/home.css" />
   </head>
   <body>
-    <%- include("./partials/navbar.ejs") %> <%- include("./partials/header.ejs") %>
+    <%- include('./partials/header', { header: header, articles: articles }) %>
     <div class="container">
       <ul>
         <% for (const art of articles) { %>

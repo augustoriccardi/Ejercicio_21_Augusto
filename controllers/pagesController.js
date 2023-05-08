@@ -25,7 +25,6 @@ async function showHome(req, res) {
       limit: 4,
       include: User,
     });
-    console.log(articles);
     res.render("home", { articles, header: "home" });
   } catch (error) {
     console.error(error);
@@ -51,7 +50,6 @@ async function indexAdmin(req, res) {
       order: [["createdAt", "DESC"]],
       include: User,
     });
-    console.log(articles);
     res.render("admin.ejs", { articles });
   } catch (error) {
     console.error(error);
