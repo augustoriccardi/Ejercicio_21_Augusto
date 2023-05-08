@@ -1,0 +1,14 @@
+<div
+  class="container-fluid p-0 bg-black d-flex flex-column align-items-center justify-content-center header_img"
+>
+  <h1 class="text-white">
+    <% if (header === "home") { %>Hack the blog <% }else{ %> <%= article.title %><%} %>
+  </h1>
+  <small class="text-white opacity-50"
+    ><% if (header === "home") { %>El blog de hack academy<% }else{ %>
+
+    <!--Insertar aca el nombre del author y la fecha de creacio del articulo-->
+
+    <% } %></small
+  >
+</div>

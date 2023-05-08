@@ -9,7 +9,7 @@ async function show(req, res) {
   const id = req.params.id;
   const article = await Article.findByPk(id, { include: Comment });
 
-  res.render("article", { article });
+  res.render("article", { article, header: "article" });
 }
 
 // Show the form for creating a new resource
