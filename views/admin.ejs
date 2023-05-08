@@ -42,7 +42,9 @@
               <td><%= article.id %></td>
               <td class="barras"><%= article.title %></td>
               <td class="barras"><%= article.content %></td>
-              <td><img src="" /></td>
+              <td class="d-flex justify-content-center align-content-center">
+                <img src="./img/bd_img/<%= article.image %>" class="img-fluid" />
+              </td>
               <td><%= article.createdAt %></td>
               <td></td>
               <td class="barras d-flex flex-column gap-2">

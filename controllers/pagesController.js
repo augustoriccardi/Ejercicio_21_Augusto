@@ -49,7 +49,6 @@ async function indexAdmin(req, res) {
     const articles = await Article.findAll({
       order: [["createdAt", "DESC"]],
       include: User,
-      limit: 7,
     });
     res.render("admin.ejs", { articles });
   } catch (error) {
