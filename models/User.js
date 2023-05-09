@@ -21,6 +21,7 @@ class User extends Model {
         sequelize,
         modelName: "user",
       },
+      
     );
     return User;
   }
