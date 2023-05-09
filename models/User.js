@@ -16,12 +16,17 @@ class User extends Model {
         lastname: {
           type: DataTypes.STRING,
         },
+        password: {
+          type: DataTypes.STRING,
+        },
+        email: {
+          type: DataTypes.STRING,
+        },
       },
       {
         sequelize,
         modelName: "user",
       },
-      
     );
     return User;
   }
