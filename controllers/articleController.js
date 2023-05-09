@@ -27,6 +27,35 @@ async function create(req, res) {
   res.render("panel", { modal: "crear", article });
 }
 
+/*Esta es la parte de crear pero esta comentada asi se puede acceder a crear sin problemas esta es la logica solamente
+/* async function create(req, res) {
+  const form = formidable({
+    multiples: true,
+    uploadDir: "./public/img/bd_img/",
+    keepExtensions: true,
+  });
+
+  form.parse(req, async (err, fields, files) => {
+    try {
+      if (!files.image) {
+        throw new Error("No se ha seleccionado ninguna imagen");
+      }
+
+      const article = await Article.create({
+        title: fields.title,
+        content: fields.content,
+        image: files.image.name,
+      });
+
+      await files.image.mv(`./public/img/bd_img/${files.image.name}`);
+
+      res.redirect("/admin");
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  });
+} */
+
 // Store a newly created resource in storage.
 async function store(req, res) {}
 
