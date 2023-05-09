@@ -28,8 +28,9 @@ async function create(req, res) {
   res.render("panel", { modal: "crear", article });
 }
 
-/*Esta es la parte de crear pero esta comentada asi se puede acceder a crear sin problemas esta es la logica solamente
-/* async function create(req, res) {
+// Store a newly created resource in storage.
+
+async function store(req, res) {
   const form = formidable({
     multiples: true,
     uploadDir: "./public/img/bd_img/",
@@ -55,10 +56,9 @@ async function create(req, res) {
       res.status(500).send(error.message);
     }
   });
-} */
+} 
 
-// Store a newly created resource in storage.
-async function store(req, res) {}
+
 
 // Show the form for editing the specified resource.
 async function edit(req, res) {
