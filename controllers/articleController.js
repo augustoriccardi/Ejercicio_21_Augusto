@@ -1,5 +1,6 @@
 const { Article, User, Comment } = require("../models");
 const formidable = require("formidable");
+const fs = require("fs");
 
 async function index(req, res) {
   const articles = await Article.findAll({
@@ -73,17 +74,37 @@ async function update(req, res) {
     keepExtensions: true,
   });
   form.parse(req, async (err, fields, files) => {
-    await Article.update(
-      {
-        title: fields.title,
-        content: fields.content,
-      },
-      {
-        where: {
-          id: req.params.id,
+    if (files.Image.size != 0) {
+      await Article.update(
+        {
+          title: fields.title,
+          content: fields.content,
+          image: files.Image.newFilename,
         },
-      },
-    );
+        {
+          where: {
+            id: req.params.id,
+          },
+        },
+      );
+    } else {
+      await Article.update(
+        {
+          title: fields.title,
+          content: fields.content,
+        },
+        {
+          where: {
+            id: req.params.id,
+          },
+        },
+      );
+      fs.unlink(`./public/img/bd_img/${files.Image.newFilename}`, (error) => {
+        if (error) {
+          console.error(error);
+        }
+      });
+    }
     res.redirect(`/admin`);
   });
 }

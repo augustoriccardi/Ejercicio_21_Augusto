@@ -50,7 +50,6 @@ async function indexAdmin(req, res) {
       order: [["id", "DESC"]],
       include: User,
     });
-    console.log(articles.User);
     res.render("admin.ejs", { articles });
   } catch (error) {
     console.error(error);
