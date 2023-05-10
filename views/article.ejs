@@ -41,7 +41,12 @@
       <% if (article.comments.length) { for( comment of article.comments ) { %>
       <div class="border-bottom pt-4 pb-4 mb2">
         <p>"<%= comment.content %>"</p>
-        <small class="text-muted"><%=comment.name %></small>
+        <% const minutes = String(comment.createdAt.getMinutes())%>
+        <small class="text-muted"
+          ><%=`Creado por ${comment.name} el ${comment.createdAt.getDay()} del
+          ${comment.createdAt.getMonth()} de ${comment.createdAt.getFullYear()}
+          ${comment.createdAt.getHours()}:${minutes.padStart(2, '0')}`%></small
+        >
       </div>
       <% } } %>
     </main>

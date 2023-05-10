@@ -17,7 +17,10 @@ async function index(req, res) {
 // Display the specified resource.
 async function show(req, res) {
   const id = req.params.id;
-  const article = await Article.findByPk(id, { include: [{ model: Comment }, { model: User }] });
+  const article = await Article.findByPk(id, {
+    include: [{ model: Comment }, { model: User }],
+    order: [["comments", "createdAt", "DESC"]],
+  });
 
   res.render("article", { article, header: "article" });
 }
@@ -56,9 +59,7 @@ async function store(req, res) {
       res.status(500).send(error.message);
     }
   });
-} 
-
-
+}
 
 // Show the form for editing the specified resource.
 async function edit(req, res) {

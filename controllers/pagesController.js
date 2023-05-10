@@ -15,8 +15,12 @@
  * En caso de estar creando una API, este controlador carece de sentido y
  * no debería existir.
  */
-
+const express = require("express");
+const app = express();
 const { Article, User } = require("../models");
+const alertMiddleware = require("../middlewares/alerts.js");
+
+app.use(alertMiddleware);
 
 async function showHome(req, res) {
   try {
@@ -57,10 +61,15 @@ async function indexAdmin(req, res) {
   }
 }
 
+async function login(req, res) {
+  res.render("panel", { modal: "Login", alerts: res.locals.alerts });
+}
+
 module.exports = {
   showHome,
   showContact,
   showAboutUs,
   indexjson,
   indexAdmin,
+  login,
 };
