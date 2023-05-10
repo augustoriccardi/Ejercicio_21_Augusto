@@ -1,4 +1,5 @@
 require("dotenv").config();
+const alertMiddleware = require("./middlewares/alerts")
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -6,25 +7,16 @@ const { Article, User, Comment } = require("./models");
 const bcrypt = require("bcryptjs");
 const flash = require("express-flash");
 const sequelize = require("sequelize");
+const cookieParser = require("cookie-parser");
 
 const express = require("express");
 const routes = require("./routes");
 const methodOverride = require("method-override");
+const { id } = require("date-fns/locale");
 const APP_PORT = process.env.APP_PORT || 3000;
 const app = express();
 
-app.use(methodOverride("_method"));
-app.use(express.static("public"));
-app.use(express.urlencoded({ extended: true }));
-app.set("view engine", "ejs");
-app.use(flash());
 
-routes(app);
-
-app.listen(APP_PORT, () => {
-  console.log(`\n[Express] Servidor corriendo en el puerto ${APP_PORT}.`);
-  console.log(`[Express] Ingresar a http://localhost:${APP_PORT}.\n`);
-});
 
 app.use(
   session({
@@ -33,19 +25,33 @@ app.use(
     saveUninitialized: false, // Docs: "The default value is true, but using the default has been deprecated".
   }),
 );
-
 app.use(passport.session());
+app.use(cookieParser());
+app.use(flash());
+app.use(methodOverride("_method"));
+app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
+app.set("view engine", "ejs");
+
+
+
+
+
+
 
 passport.use(
-  new LocalStrategy(async (username, password, done) => {
+  new LocalStrategy({ usernameField: "email" }, async (email, password, done) => {
     try {
-      const user = await User.findOne({ where: { email: username } });
-      const bdPassHasheada = await bcrypt.hash(user.password, 8);
+      const user = await User.findOne({ where: { email: email } });
       if (!user) {
-        done(null, false, { message: "Creedenciales incorrectas" });
-      } else if (!(await bcrypt.compare(password, bdPassHasheada))) {
-        done(null, false, { message: "Creedenciales incorrectas" });
+        console.log("hola");
+        return done(null, false, { message: "Credenciales incorrectas" });
+      } else if (!(await bcrypt.compare(password, user.password))) {
+        console.log("hola2");
+
+        return done(null, false, { message: "Credenciales incorrectas" });
       } else {
+        console.log("chau");
         return done(null, user);
       }
     } catch (error) {
@@ -57,8 +63,26 @@ passport.use(
   }),
 );
 
-app.get("/login", function (req, res) {
-  res.render("panel", { modal: "Login" });
+passport.serializeUser(function (user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async function (id, done) {
+  try {
+    const user = await User.findByPk(id);
+    done(null, user);
+  } catch (error) {
+    done(error);
+  }
+});
+
+app.use(alertMiddleware);
+
+routes(app);
+
+
+app.get("/login", async function (req, res) {
+  res.render("panel", { modal: "Login", alerts: req.flash() });
 });
 
 app.get("/welcome", function (req, res) {
@@ -83,3 +107,10 @@ app.post(
 // router.get("/login")
 // router.post("/login")
 // router.get("/logout")
+
+
+app.listen(APP_PORT, () => {
+  console.log(`\n[Express] Servidor corriendo en el puerto ${APP_PORT}.`);
+  console.log(`[Express] Ingresar a http://localhost:${APP_PORT}.\n`);
+});
+
