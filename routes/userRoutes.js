@@ -12,11 +12,8 @@ router.get("/:id", userController.show);
 router.get("/:id/editar", userController.edit);
 router.patch("/:id", userController.update);
 router.delete("/:id", userController.destroy);
-router.get("/registro")
-router.post("/registro")
-router.get("/login")
-router.post("/login")
-router.get("/logout")
-
+router.get("/registro");
+router.post("/registro");
+router.get("/logout");
 
 module.exports = router;

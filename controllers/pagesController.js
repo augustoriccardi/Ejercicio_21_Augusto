@@ -15,12 +15,8 @@
  * En caso de estar creando una API, este controlador carece de sentido y
  * no debería existir.
  */
-const express = require("express");
-const app = express();
-const { Article, User } = require("../models");
-const alertMiddleware = require("../middlewares/alerts.js");
 
-app.use(alertMiddleware);
+const { Article, User } = require("../models");
 
 async function showHome(req, res) {
   try {

@@ -8,4 +8,4 @@ function login(req, res) {
   })(req, res);
 }
 
-module.export = { login };
+module.exports = { login };

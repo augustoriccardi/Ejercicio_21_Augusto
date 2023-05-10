@@ -1,13 +1,14 @@
 const { passport, passportConfig } = require("./config/passport");
 require("dotenv").config();
-
-const flash = require("express-flash");
-const cookieParser = require("cookie-parser");
+const session = require("express-session");
 const express = require("express");
 const routes = require("./routes");
 const methodOverride = require("method-override");
 const APP_PORT = process.env.APP_PORT || 3000;
 const app = express();
+const alertMiddleware = require("./middlewares/alerts.js");
+const flash = require("express-flash");
+const cookieParser = require("cookie-parser");
 
 app.use(
   session({
@@ -20,6 +21,8 @@ app.use(passport.session());
 passportConfig();
 app.use(cookieParser());
 app.use(flash());
+app.use(alertMiddleware);
+
 app.use(methodOverride("_method"));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
