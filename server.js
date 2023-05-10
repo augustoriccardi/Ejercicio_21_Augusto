@@ -1,5 +1,5 @@
 require("dotenv").config();
-const alertMiddleware = require("./middlewares/alerts")
+const alertMiddleware = require("./middlewares/alerts.js");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -16,8 +16,6 @@ const { id } = require("date-fns/locale");
 const APP_PORT = process.env.APP_PORT || 3000;
 const app = express();
 
-
-
 app.use(
   session({
     secret: "AlgúnTextoSuperSecreto",
@@ -33,25 +31,15 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
-
-
-
-
-
-
 passport.use(
   new LocalStrategy({ usernameField: "email" }, async (email, password, done) => {
     try {
       const user = await User.findOne({ where: { email: email } });
       if (!user) {
-        console.log("hola");
-        return done(null, false, { message: "Credenciales incorrectas" });
+        return done(null, false, { message: "Credenciales incorrectas, revise su email" });
       } else if (!(await bcrypt.compare(password, user.password))) {
-        console.log("hola2");
-
-        return done(null, false, { message: "Credenciales incorrectas" });
+        return done(null, false, { message: "Credenciales incorrectas, revise su contraseña" });
       } else {
-        console.log("chau");
         return done(null, user);
       }
     } catch (error) {
@@ -80,9 +68,8 @@ app.use(alertMiddleware);
 
 routes(app);
 
-
 app.get("/login", async function (req, res) {
-  res.render("panel", { modal: "Login", alerts: req.flash() });
+  res.render("panel", { modal: "Login", alerts: res.locals.alerts });
 });
 
 app.get("/welcome", function (req, res) {
@@ -108,9 +95,7 @@ app.post(
 // router.post("/login")
 // router.get("/logout")
 
-
 app.listen(APP_PORT, () => {
   console.log(`\n[Express] Servidor corriendo en el puerto ${APP_PORT}.`);
   console.log(`[Express] Ingresar a http://localhost:${APP_PORT}.\n`);
 });
-

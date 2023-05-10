@@ -1,8 +1,6 @@
-function alerts(req, res , next) {
-    res.locals.alerts = req.flash()
-    console.log(res.locals)
-    next()
+function alerts(req, res, next) {
+  res.locals.alerts = req.flash();
+  next();
 }
 
-
-module.exports = alerts
+module.exports = alerts;
