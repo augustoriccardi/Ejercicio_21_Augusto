@@ -1,7 +1,16 @@
+*{
+  box-sizing: border-box;
+}
+
+body{
+  height: 100vh;
+  width: 100vw;
+}
+
 .header_img {
   position: relative;
   background-color: black;
-  height: 200px;
+  height: 600px;
   margin-bottom: 2rem;
 }
 
@@ -73,9 +82,10 @@ hr {
   border-color: gray;
 }
 
-#passVerify{
+#passVerify, #divPass{
   display: none;
 }
+
  #circulito{
   height: 20px;
   width: 20px;
@@ -85,12 +95,17 @@ hr {
   margin-bottom: -4px;
  }
 
- 
-/* footer {
-    position: absolute;
+ .imageMyArticles{
+  height: 80px;
+  width: 100px;
+ }
+
+footer {
+    position: relative;
+    left: 0;
     bottom: 0;
     width: 100%;
     height: 138px;
     background-color: rgb(255, 255, 255); 
-    padding: 20px 0;
-  } */
+    margin-top: 50px;
+  }

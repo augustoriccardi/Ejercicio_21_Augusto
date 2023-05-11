@@ -35,12 +35,22 @@ async function edit(req, res) {
 async function update(req, res) {
   let passHashed = await bcrypt.hash(req.body.password, 8);
   const user = await User.findByPk(req.user.id);
-  user.update({
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    email: req.body.email,
-    password: passHashed,
-  });
+  if (req.body.password === "") {
+    user.update({
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      email: req.body.email,
+      password: req.user.password,
+    });
+  } else {
+    user.update({
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      email: req.body.email,
+      password: passHashed,
+    });
+  }
+  return res.redirect("/");
 }
 
 // Remove the specified resource from storage.

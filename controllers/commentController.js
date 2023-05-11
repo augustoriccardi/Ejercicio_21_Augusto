@@ -9,7 +9,7 @@ async function show(req, res) {}
 // Show the form for creating a new resource
 async function create(req, res) {
   await Comment.create({
-    name: req.body.name,
+    name: req.user.firstname + " " + req.user.lastname,
     content: req.body.comment,
     articleId: req.params.id,
   });

@@ -26,16 +26,17 @@
         <p><%= article.content %></p>
         <p><%= article.content %></p>
         <p><%= article.content %></p>
+        <% if (user) {%>
         <form
           action="/comentarios/crear/<%= article.id%>"
           method="post"
           class="w-100 d-flex gap-3 flex-column border-top pt-5 mt-5 mb-4"
         >
           <label for="name"><h2>Add your Commnent</h2></label>
-          <input type="text" name="name" id="name" class="form-control" placeholder="Name" />
           <textarea name="comment" id="comment" cols="30" rows="10" class="form-control"></textarea>
           <button type="submit" class="btn btn-primary">Send</button>
         </form>
+        <%}%>
       </article>
 
       <!--Comments zone-->

@@ -4,10 +4,14 @@
  */
 
 const contraseniaRadio = document.querySelector("#contraseniaRadio");
+const divPass = document.querySelector("#divPass");
 
 contraseniaRadio.addEventListener("click", mostrarInput);
 
 function mostrarInput() {
-  if (contraseniaRadio.value === "Si") {
+  if (contraseniaRadio.checked) {
+    divPass.style.display = "block";
+  } else {
+    divPass.style.display = "none";
   }
 }

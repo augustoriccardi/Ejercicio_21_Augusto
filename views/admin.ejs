@@ -38,22 +38,28 @@
           <tbody id="contenido"></tbody>
           <tbody id="contenido">
             <% articles.forEach(function(article) { %>
-            <tr>
+            <tr class="align-items-center">
               <td><%= article.id %></td>
               <td class="barras"><%= article.title %></td>
-              <td class="barras"><%= article.content %></td>
-              <td class="d-flex justify-content-center align-content-center">
-                <img src="./img/bd_img/<%= article.image %>" class="img-fluid" />
+              <td class="barras"><%= article.content.slice(0, 50)%>...</td>
+              <td class="d-flex justify-content-center align-items-center">
+                <img
+                  class="imageMyArticles"
+                  src="./img/bd_img/<%= article.image %>"
+                  class="img-fluid"
+                />
               </td>
-              <td><%= article.createdAt %></td>
+              <% const minutes = String(article.createdAt.getMinutes())%>
+              <td>
+                <%=`Creado el ${article.createdAt.getDay()} del ${article.createdAt.getMonth()} de
+                ${article.createdAt.getFullYear()} a las
+                ${article.createdAt.getHours()}:${minutes.padStart(2, '0')}`%>
+              </td>
               <td><%= article.user.firstname %> <%= article.user.lastname %></td>
-              <td class="barras d-flex flex-column gap-2">
-                <a href="/articulos/<%= article.id %>/editar" class="btn btn-primary w-100">
-                  Editar
-                </a>
+              <td class="gap-2">
+                <a href="/articulos/<%= article.id %>/editar" class="btn btn-primary"> Editar </a>
                 <form action="/articulos/<%= article.id %>?_method=DELETE" method="post">
-                  <input type="hidden" name="_method" value="DELETE" />
-                  <button type="submit" class="btn btn-danger w-100">Eliminar</button>
+                  <button type="submit" class="btn btn-danger mt-2">Eliminar</button>
                 </form>
               </td>
             </tr>

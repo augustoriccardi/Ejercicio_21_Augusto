@@ -60,13 +60,12 @@ async function store(req, res) {
         throw new Error("No se ha seleccionado ninguna imagen");
       }
 
-      const article = await Article.create({
+      await Article.create({
         title: fields.title,
         content: fields.content,
-        image: files.image.name,
+        image: files.image.newFilename,
+        userId: req.user.id,
       });
-
-      await files.image.mv(`./public/img/bd_img/${files.image.name}`);
 
       res.redirect("/admin");
     } catch (error) {

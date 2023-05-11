@@ -20,14 +20,12 @@
   <body>
     <% if (sessionOn) {%> <%- include("./partials/navbarUser.ejs") %> <%} else {%> <%-
     include("./partials/navbar.ejs") %> <%}%>
-    <div class="d-flex w-100 justify-content-center align-items-center flex-column m-3">
-      <div class="container w-50 shadow p-5 rounded-5">
-        <% if (modal =="crear") { %> <%- include("./partials/Crear.ejs") %> <% } %> <% if
-        (modal=="editar") { %> <%- include("./partials/Editar.ejs") %> <% } %> <% if
-        (modal=="Login") { %> <%- include("./partials/Login.ejs") %> <% } %> <% if
-        (modal=="Registro") { %> <%- include("./partials/Registro.ejs") %> <% } %> <% if
-        (modal=="EditarUsuario") { %> <%- include("./partials/EditarUsuario.ejs") %> <% } %>
-      </div>
+    <div class="container shadow rounded p-5 mt-3" style="max-width: 500px">
+      <% if (modal =="crear") { %> <%- include("./partials/Crear.ejs") %> <% } %> <% if
+      (modal=="editar") { %> <%- include("./partials/Editar.ejs") %> <% } %> <% if (modal=="Login")
+      { %> <%- include("./partials/Login.ejs") %> <% } %> <% if (modal=="Registro") { %> <%-
+      include("./partials/Registro.ejs") %> <% } %> <% if (modal=="EditarUsuario") { %> <%-
+      include("./partials/EditarUsuario.ejs") %> <% } %>
     </div>
     <%- include("./partials/footer.ejs") %>
     <script
@@ -40,5 +38,6 @@
       integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
       crossorigin="anonymous"
     ></script>
+    <script src="/js/app.js"></script>
   </body>
 </html>
