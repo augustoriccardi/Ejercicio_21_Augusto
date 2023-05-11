@@ -1,7 +1,7 @@
-const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const bcrypt = require("bcryptjs");
+const { User } = require("../models");
 
 function passportConfig() {
   passport.use(
@@ -16,7 +16,8 @@ function passportConfig() {
           return done(null, user);
         }
       } catch (error) {
-        return done(error);
+        console.log(error);
+        return done(null, false, { message: "Ocurrió un error inesperado, por favor reintente." });
       }
     }),
   );

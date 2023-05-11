@@ -1,8 +1,8 @@
-const { passport } = require("../config/passport");
+const passport = require("passport");
 
 function login(req, res) {
-  passport.authenticate("local", {
-    successRedirect: "/welcome",
+  return passport.authenticate("local", {
+    successRedirect: "/",
     failureRedirect: "/login",
     failureFlash: true,
   })(req, res);

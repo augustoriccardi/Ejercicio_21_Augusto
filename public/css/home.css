@@ -67,6 +67,16 @@ hr {
   color: grey;
 }
 
+.navButton{
+  height: 40px;
+  background-color: gray;
+  border-color: gray;
+}
+
+#passVerify{
+  display: none;
+}
+
 /* footer {
     position: absolute;
     bottom: 0;

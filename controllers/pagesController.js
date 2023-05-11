@@ -19,16 +19,30 @@
 const { Article, User } = require("../models");
 
 async function showHome(req, res) {
-  try {
-    const articles = await Article.findAll({
-      order: [["createdAt", "DESC"]],
-      limit: 4,
-      include: User,
-    });
-    res.render("home", { articles, header: "home" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error de servidor");
+  const sessionOn = req.isAuthenticated();
+  if (sessionOn) {
+    const userOn = req.user.dataValues;
+    try {
+      const articles = await Article.findAll({
+        order: [["createdAt", "DESC"]],
+        include: User,
+      });
+      res.render("home", { articles, header: "home", sessionOn, userOn });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Error de servidor");
+    }
+  } else {
+    try {
+      const articles = await Article.findAll({
+        order: [["createdAt", "DESC"]],
+        include: User,
+      });
+      res.render("home", { articles, header: "home", sessionOn });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Error de servidor");
+    }
   }
 }
 
@@ -45,12 +59,14 @@ async function indexjson(req, res) {
   res.json(article);
 }
 async function indexAdmin(req, res) {
+  const userOn = req.user.dataValues;
   try {
     const articles = await Article.findAll({
       order: [["id", "DESC"]],
       include: User,
+      where: { userId: userOn.id },
     });
-    res.render("admin.ejs", { articles });
+    res.render("admin", { articles, userOn });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error de servidor");
@@ -58,7 +74,8 @@ async function indexAdmin(req, res) {
 }
 
 async function login(req, res) {
-  res.render("panel", { modal: "Login", alerts: res.locals.alerts });
+  const sessionOn = req.isAuthenticated();
+  res.render("panel", { modal: "Login", alerts: res.locals.alerts, sessionOn });
 }
 
 module.exports = {

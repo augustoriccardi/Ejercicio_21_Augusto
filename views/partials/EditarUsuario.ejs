@@ -1,0 +1,64 @@
+<form action="/usuarios/registro" method="post">
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      name="email"
+      value="<%=userOn.email%>"
+      required
+    />
+  </div>
+  <div class="mb-3">
+    <label for="firstname" class="form-label">Nombre</label>
+    <input
+      type="text"
+      class="form-control"
+      id="firstname"
+      name="firstname"
+      value="<%=userOn.firstname%>"
+      required
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="lastname" class="form-label">Apellido</label>
+    <input
+      type="text"
+      class="form-control"
+      id="lastname"
+      name="lastname"
+      value="<%=userOn.lastname%>"
+      required
+    />
+  </div>
+
+  <div class="form-check form-check-inline">
+    <input
+      id="contraseniaRadio"
+      class="form-check-input"
+      type="radio"
+      name="inlineRadioOptions"
+      value="Si"
+    />
+    <label class="form-check-label" for="inlineRadio1">1</label>
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      name="password"
+      value="<%=userOn.password%>"
+      required
+    />
+  </div>
+
+  <div id="passVerify" class="mb-3">
+    <label for="password" class="form-label">Repita su password</label>
+    <input type="password" class="form-control" id="password" name="password" required />
+  </div>
+  <button type="submit" class="btn btn-primary mt-5">Registrarse</button>
+</form>

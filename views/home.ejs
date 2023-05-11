@@ -18,11 +18,13 @@
     <link rel="stylesheet" href="/css/home.css" />
   </head>
   <body>
-    <%- include("./partials/navbar.ejs") %> <%- include('./partials/header') %>
+    <% if (sessionOn) {%> <%- include("./partials/navbarUser.ejs") %> <%-
+    include('./partials/header') %> <%} else {%> <%- include("./partials/navbar.ejs") %> <%-
+    include('./partials/header') %> <%}%>
     <div class="container">
       <ul>
         <% for (const art of articles) { %>
-        <li class="li">
+        <li class="li mt-3">
           <div class="row">
             <div class="col-md-6 offset-md-3 d-flex flex-column">
               <a class="alink" href="/articulos/<%= art.id %>"><%= art.title %></a>
@@ -32,9 +34,11 @@
                 %></small
               >
               <% } %>
+              <hr />
             </div>
           </div>
         </li>
+
         <% } %>
       </ul>
     </div>
