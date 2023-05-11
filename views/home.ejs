@@ -30,9 +30,9 @@
               <a class="alink" href="/articulos/<%= art.id %>"><%= art.title %></a>
               <% if (art.user) { %>
               <small class="text-muted">
-                Created By <%= art.user.firstname %> <%= art.user.lastname %> - <%= art.createdAgo
-                %></small
-              >
+                Created By <%= art.user.firstname %> <%= art.user.lastname %> - Published <%=
+                art.createdAgo %> ago
+              </small>
               <% } %>
               <hr />
             </div>

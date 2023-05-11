@@ -47,7 +47,6 @@ async function update(req, res) {
 async function destroy(req, res) {}
 
 async function logout(req, res) {
-  console.log("Hola");
   req.logout(function (err) {
     if (err) {
       return next(err);

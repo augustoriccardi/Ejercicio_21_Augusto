@@ -1,23 +1,6 @@
 <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
   <div class="container d-flex">
     <a class="navbar-brand aTextMain" href="/">Hack the blog</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarScroll"
-      aria-controls="navbarScroll"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarScroll">
-      <ul
-        class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
-        style="--bs-scroll-height: 100px"
-      ></ul>
-      <div class="container-fluid">
         <button
           class="navbar-toggler"
           type="button"
@@ -38,7 +21,7 @@
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
-              >
+                ><div id="circulito"></div>
                 <%= userOn.firstname %>
               </a>
               <ul class="dropdown-menu">
@@ -53,7 +36,6 @@
             </li>
           </ul>
         </div>
-      </div>
     </div>
   </div>
 </nav>

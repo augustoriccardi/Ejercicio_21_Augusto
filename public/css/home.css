@@ -76,7 +76,16 @@ hr {
 #passVerify{
   display: none;
 }
+ #circulito{
+  height: 20px;
+  width: 20px;
+  border-radius: 50px;
+  background-color: wheat;
+  display:inline-block;
+  margin-bottom: -4px;
+ }
 
+ 
 /* footer {
     position: absolute;
     bottom: 0;
