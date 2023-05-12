@@ -18,8 +18,9 @@
     <title>Panel Configuracion Administrador</title>
   </head>
   <body>
-    <% if (sessionOn) {%> <%- include("./partials/navbarUser.ejs") %> <%} else {%> <%-
-    include("./partials/navbar.ejs") %> <%}%>
+    <% if (!user) {%> <%- include("./partials/navbar.ejs") %> <%} else if(!user.role) {%> <%-
+    include("./partials/navbarUser.ejs") %> <%} else {%> <%- include("./partials/navbarAdmin.ejs")
+    %> <%} %>
     <div class="container shadow rounded p-5 mt-3" style="max-width: 500px">
       <% if (modal =="crear") { %> <%- include("./partials/Crear.ejs") %> <% } %> <% if
       (modal=="editar") { %> <%- include("./partials/Editar.ejs") %> <% } %> <% if (modal=="Login")
@@ -27,7 +28,9 @@
       include("./partials/Registro.ejs") %> <% } %> <% if (modal=="EditarUsuario") { %> <%-
       include("./partials/EditarUsuario.ejs") %> <% } %>
     </div>
+
     <%- include("./partials/footer.ejs") %>
+
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
       integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"

@@ -1,4 +1,4 @@
-<form method="post" action="/usuarios/<%=userOn.id%>?_method=PATCH">
+<form method="post" action="/usuarios/<%=user.id%>?_method=PATCH">
   <div class="mb-3">
     <label for="email" class="form-label">Email</label>
     <input
@@ -6,7 +6,7 @@
       class="form-control"
       id="email"
       name="email"
-      value="<%=userOn.email%>"
+      value="<%=user.email%>"
       required
     />
   </div>
@@ -17,7 +17,7 @@
       class="form-control"
       id="firstname"
       name="firstname"
-      value="<%=userOn.firstname%>"
+      value="<%=user.firstname%>"
       required
     />
   </div>
@@ -29,7 +29,7 @@
       class="form-control"
       id="lastname"
       name="lastname"
-      value="<%=userOn.lastname%>"
+      value="<%=user.lastname%>"
       required
     />
   </div>

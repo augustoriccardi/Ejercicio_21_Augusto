@@ -1,6 +1,5 @@
-const { Sequelize, Model, DataTypes } = require("sequelize");
+const { Model, DataTypes } = require("sequelize");
 const { formatDistanceToNow } = require("date-fns");
-const User = require("./User");
 
 class Article extends Model {
   static initModel(sequelize) {

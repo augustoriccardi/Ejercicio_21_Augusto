@@ -1,16 +1,27 @@
-const { User, sequelize } = require("../models");
+const { Article, User } = require("../models");
 const bcrypt = require("bcryptjs");
 
 // Display a listing of the resource.
 async function index(req, res) {}
 
 // Display the specified resource.
-async function show(req, res) {}
+async function showMyArticles(req, res) {
+  try {
+    const articles = await Article.findAll({
+      order: [["id", "DESC"]],
+      include: User,
+      where: { userId: req.user.id },
+    });
+    res.render("listaArticulos", { articles });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error de servidor");
+  }
+}
 
 // Show the form for creating a new resource
 async function create(req, res) {
-  const sessionOn = req.isAuthenticated();
-  return res.render("panel", { modal: "Registro", sessionOn });
+  return res.render("panel", { modal: "Registro" });
 }
 
 // Store a newly created resource in storage.
@@ -27,9 +38,7 @@ async function store(req, res) {
 
 // Show the form for editing the specified resource.
 async function edit(req, res) {
-  const sessionOn = req.isAuthenticated();
-  const userOn = req.user.dataValues;
-  return res.render("Panel", { modal: "EditarUsuario", sessionOn, userOn });
+  return res.render("Panel", { modal: "EditarUsuario" });
 }
 
 async function update(req, res) {
@@ -67,7 +76,7 @@ async function logout(req, res) {
 
 module.exports = {
   index,
-  show,
+  showMyArticles,
   create,
   store,
   edit,

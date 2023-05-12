@@ -1,16 +1,33 @@
+<% if (header !== "home") {%>
 <div
-  class="container-fluid p-0 bg-black d-flex flex-column align-items-center justify-content-center header_img"
+  class="container-fluid p-0 bg-black d-flex flex-column align-items-center justify-content-center header_img_articulo"
+  style="background-image: url('../img/bd_img/<%=article.image%>')"
 >
-  <h1 class="text-white">
-    <% if (header === "home") { %> Hack the blog <% } else { %> <%= article.title %> <% } %>
-  </h1>
-  <small class="text-white opacity-50">
-    <% if (header === "home") { %> El blog de hack academy <% } else { %> <% if (article.user) { %>
-    <small class="text-white opacity-75">
-      Created By <%= article.user.firstname %> <%= article.user.lastname %>
-    </small>
+  <% } else { %>
+  <div
+    class="container-fluid p-0 bg-black d-flex flex-column align-items-center justify-content-center header_img"
+  >
+    <%}%>
+  </div>
+  <div
+    class="d-flex flex-column align-items-center justify-content-center header_title_article text-center"
+  >
+    <div>
+      <% if (header === "home") { %>
+      <h1 id="head_title" class="text-white">Hack the blog</h1>
+      <% } else { %>
+      <h2 id="head_article" class="text-white"><%= article.title %></h2>
+      <% } %>
+    </div>
+    <div>
+      <h3 class="publish_article_title text-white">
+        <% if (header === "home") { %> El blog de hack academy <% } else if (article.user) { %>
+      </h3>
+      <h3 class="publish_article_title text-white">
+        Created By <%= article.user.firstname %> <%= article.user.lastname %>
+      </h3>
+      <h3 class="publish_article_title text-white"><%= article.createdAgo %> ago</h3>
+    </div>
     <% } %>
-    <small class="text-white opacity-75"><%= article.createdAgo %> ago</small>
-    <% } %>
-  </small>
+  </div>
 </div>

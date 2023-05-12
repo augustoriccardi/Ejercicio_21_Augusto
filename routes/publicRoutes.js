@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const pagesController = require("../controllers/pagesController");
-const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
+const authController = require("../controllers/authController");
+const makeUserAvailableInViews = require("../middlewares/makeUserAvailableInViews");
 
-router.get("/", pagesController.showHome);
+router.get("/", makeUserAvailableInViews, pagesController.showHome);
 router.get("/api/articulos", pagesController.indexjson);
-router.get("/admin", ensureAuthenticated, pagesController.indexAdmin);
-router.get("/login", pagesController.login);
+router.get("/login", makeUserAvailableInViews, pagesController.login);
+router.post("/login", authController.login);
 
 module.exports = router;

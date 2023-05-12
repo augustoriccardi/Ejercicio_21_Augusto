@@ -18,8 +18,9 @@
     <link rel="stylesheet" href="/css/home.css" />
   </head>
   <body>
-    <% if (sessionOn) {%> <%- include("./partials/navbarUser.ejs") %> <%-
-    include('./partials/header') %> <%} else {%> <%- include("./partials/navbar.ejs") %> <%-
+    <% if (!user){%><%- include("./partials/navbar.ejs") %> <%- include('./partials/header') %> <% }
+    else if (!user.role) {%> <%- include("./partials/navbarUser.ejs") %> <%-
+    include('./partials/header') %> <%} else {%> <%- include("./partials/navbarAdmin.ejs") %> <%-
     include('./partials/header') %> <%}%>
     <div class="container">
       <ul>
@@ -29,7 +30,7 @@
             <div class="col-md-6 offset-md-3 d-flex flex-column">
               <a class="alink" href="/articulos/<%= art.id %>"><%= art.title %></a>
               <% if (art.user) { %>
-              <small class="text-muted">
+              <small class="main_publish_article">
                 Created By <%= art.user.firstname %> <%= art.user.lastname %> - Published <%=
                 art.createdAgo %> ago
               </small>
@@ -38,7 +39,6 @@
             </div>
           </div>
         </li>
-
         <% } %>
       </ul>
     </div>

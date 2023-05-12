@@ -30,10 +30,6 @@ app.set("view engine", "ejs");
 
 routes(app);
 
-// router.get("/registro")
-// router.post("/registro")
-// router.get("/logout")
-
 app.listen(APP_PORT, () => {
   console.log(`\n[Express] Servidor corriendo en el puerto ${APP_PORT}.`);
   console.log(`[Express] Ingresar a http://localhost:${APP_PORT}.\n`);

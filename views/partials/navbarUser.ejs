@@ -22,12 +22,12 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
                 ><div id="circulito"></div>
-                <%= userOn.firstname %>
+                <%= user.firstname %>
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/admin">Mis articulos</a></li>
+                <li><a class="dropdown-item" href="/usuarios/mis-articulos">Mis articulos</a></li>
                 <li>
-                  <a class="dropdown-item" href="/usuarios/<%=userOn.id%>/editar"
+                  <a class="dropdown-item" href="/usuarios/<%=user.id%>/editar"
                     >Modificar perfil</a
                   >
                 </li>

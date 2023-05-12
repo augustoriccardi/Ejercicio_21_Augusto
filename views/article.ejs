@@ -18,8 +18,9 @@
     <title>Articulo <%= article.title %></title>
   </head>
   <body class="">
-    <% if (sessionOn) {%> <%- include("./partials/navbarUser.ejs") %> <%-
-    include('./partials/header') %> <%} else {%> <%- include("./partials/navbar.ejs") %> <%-
+    <% if (!user){%><%- include("./partials/navbar.ejs") %> <%- include('./partials/header') %> <% }
+    else if (!user.role) {%> <%- include("./partials/navbarUser.ejs") %> <%-
+    include('./partials/header') %> <%} else {%> <%- include("./partials/navbarAdmin.ejs") %> <%-
     include('./partials/header') %> <%}%>
     <main class="container w-75 bg-white p-5">
       <article class="d-flex justify-content-center flex-column gap-2 align-items-center">

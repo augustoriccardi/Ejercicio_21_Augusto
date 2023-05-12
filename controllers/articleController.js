@@ -16,33 +16,18 @@ async function index(req, res) {
 }
 // Display the specified resource.
 async function show(req, res) {
-  const sessionOn = req.isAuthenticated();
-  if (sessionOn) {
-    const userOn = req.user.dataValues;
-    const id = req.params.id;
-    const article = await Article.findByPk(id, {
-      include: [{ model: Comment }, { model: User }],
-      order: [["comments", "createdAt", "DESC"]],
-    });
+  const article = await Article.findByPk(req.params.id, {
+    include: [{ model: Comment }, { model: User }],
+    order: [["comments", "createdAt", "DESC"]],
+  });
 
-    res.render("article", { article, header: "article", sessionOn, userOn });
-  } else {
-    const id = req.params.id;
-    const article = await Article.findByPk(id, {
-      include: [{ model: Comment }, { model: User }],
-      order: [["comments", "createdAt", "DESC"]],
-    });
-
-    res.render("article", { article, header: "article", sessionOn });
-  }
+  res.render("article", { article, header: "article" });
 }
 
 // Show the form for creating a new resource
 async function create(req, res) {
-  const userOn = req.user.dataValues;
-  const sessionOn = req.isAuthenticated();
   const article = await Article.findByPk(1);
-  res.render("panel", { modal: "crear", article, sessionOn, userOn });
+  res.render("panel", { modal: "crear", article });
 }
 
 // Store a newly created resource in storage.
@@ -66,8 +51,11 @@ async function store(req, res) {
         image: files.image.newFilename,
         userId: req.user.id,
       });
-
-      res.redirect("/admin");
+      if (!req.user.role) {
+        res.redirect("/usuarios/mis-articulos");
+      } else {
+        res.redirect("/panel/admin");
+      }
     } catch (error) {
       res.status(500).send(error.message);
     }
@@ -76,10 +64,8 @@ async function store(req, res) {
 
 // Show the form for editing the specified resource.
 async function edit(req, res) {
-  const userOn = req.user.dataValues;
-  const sessionOn = req.isAuthenticated();
   const article = await Article.findByPk(req.params.id);
-  res.render("panel", { modal: "editar", article, sessionOn, userOn });
+  res.render("panel", { modal: "editar", article });
 }
 
 // Update the specified resource in storage.
@@ -121,7 +107,11 @@ async function update(req, res) {
         }
       });
     }
-    res.redirect(`/admin`);
+    if (!req.user.role) {
+      res.redirect("/usuarios/mis-articulos");
+    } else {
+      res.redirect("/panel/admin");
+    }
   });
 }
 
@@ -132,11 +122,12 @@ async function destroy(req, res) {
       id: req.params.id,
     },
   });
-  res.redirect(`/admin`);
+  if (!req.user.role) {
+    res.redirect("/usuarios/mis-articulos");
+  } else {
+    res.redirect("/panel/admin");
+  }
 }
-
-// Otros handlers...
-// ...
 
 module.exports = {
   index,
