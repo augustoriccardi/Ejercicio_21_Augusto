@@ -1,5 +1,6 @@
 const express = require("express");
 const adminController = require("../controllers/adminController");
+const userController = require("../controllers/userController");
 const ensureAdmin = require("../middlewares/ensureAdmin");
 const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
 const makeUserAvailableInViews = require("../middlewares/makeUserAvailableInViews");
@@ -26,7 +27,7 @@ router.get(
   ensureAuthenticated,
   ensureAdmin,
   makeUserAvailableInViews,
-  adminController.createUser,
+  userController.create,
 );
 
 router.get(

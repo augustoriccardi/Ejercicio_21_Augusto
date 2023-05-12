@@ -17,7 +17,7 @@ function passportConfig() {
         }
       } catch (error) {
         console.log(error);
-        return done(null, false, { message: "Ocurrió un error inesperado, por favor reintente." });
+        return done(null, false, { message: "Ocurrió un error inesperado, por favor reintente" });
       }
     }),
   );

@@ -64,11 +64,6 @@ async function showComments(req, res) {
 }
 
 // Show the form for editing the specified resource.
-async function createUser(req, res) {
-  return res.render("Panel", { modal: "Registro" });
-}
-
-// Show the form for editing the specified resource.
 async function editUser(req, res) {}
 
 // Update the specified resource in storage.
@@ -114,7 +109,6 @@ module.exports = {
   showArticles,
   showUsers,
   showComments,
-  createUser,
   editUser,
   updateUser,
   destroyUser,
