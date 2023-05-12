@@ -28,9 +28,6 @@ router.get(
   makeUserAvailableInViews,
   adminController.createUser,
 );
-router.get("/bd-users/:id/editar", ensureAuthenticated, ensureAdmin, makeUserAvailableInViews);
-router.patch("/bd-users/:id", adminController.updateUser);
-router.delete("/bd-users/:id", adminController.destroyUser);
 
 router.get(
   "/bd-comments",
@@ -46,6 +43,9 @@ router.get(
   makeUserAvailableInViews,
   adminController.editComment,
 );
+router.get("/bd-users/:id/editar", ensureAuthenticated, ensureAdmin, makeUserAvailableInViews);
+router.patch("/bd-users/:id", adminController.updateUser);
+router.delete("/bd-users/:id", adminController.destroyUser);
 router.get(
   "/bd-comments/:id/editar",
   ensureAuthenticated,
