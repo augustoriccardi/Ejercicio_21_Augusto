@@ -1,6 +1,6 @@
 <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
   <div class="container d-flex">
-    <a class="navbar-brand aTextMain" href="/">Hack the blog - Admin</a>
+    <a class="navbar-brand aTextMain" href="/">Hack the blog - Reader</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -25,17 +25,9 @@
             <%= user.firstname %>
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/panel/admin">Ver articulos</a></li>
-            <li>
-              <a class="dropdown-item" href="/panel/bd-users">Ver usuarios</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="/panel/bd-comments">Ver comentarios</a>
-            </li>
             <li>
               <a class="dropdown-item" href="/usuarios/<%=user.id%>/editar">Modificar perfil</a>
             </li>
-
             <li><a class="dropdown-item" href="/usuarios/logout">Logout</a></li>
           </ul>
         </li>

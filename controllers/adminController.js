@@ -96,7 +96,10 @@ async function createComment(req, res) {
 }
 
 // Show the form for editing the specified resource.
-async function editComment(req, res) {}
+async function editComment(req, res) {
+  const comment = await Comment.findByPk(req.params.id, { include: [{ model: Article }] });
+  res.render("Panel", { modal: "EditarComentario", comment });
+}
 
 // Update the specified resource in storage.
 async function updateComment(req, res) {}

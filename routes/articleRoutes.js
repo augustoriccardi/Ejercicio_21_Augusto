@@ -4,7 +4,6 @@ const articleController = require("../controllers/articleController");
 const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
 const makeUserAvailableInViews = require("../middlewares/makeUserAvailableInViews");
 
-router.get("/", articleController.index);
 router.get("/crear", ensureAuthenticated, makeUserAvailableInViews, articleController.create);
 router.post("/", ensureAuthenticated, articleController.store);
 router.get("/:id", makeUserAvailableInViews, makeUserAvailableInViews, articleController.show);

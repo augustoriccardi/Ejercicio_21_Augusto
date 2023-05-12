@@ -1,10 +1,18 @@
-const { Comment } = require("../models");
+const { Comment, Article, User } = require("../models");
 
 // Display a listing of the resource.
 async function index(req, res) {}
 
 // Display the specified resource.
-async function show(req, res) {}
+// Display the specified resource.
+async function show(req, res) {
+  const article = await Article.findByPk(req.params.id, {
+    include: [{ model: Comment }, { model: User }],
+    order: [["createdAt", "DESC"]],
+  });
+
+  res.render("article", { article, header: "article" });
+}
 
 // Show the form for creating a new resource
 async function create(req, res) {
@@ -26,7 +34,14 @@ async function edit(req, res) {}
 async function update(req, res) {}
 
 // Remove the specified resource from storage.
-async function destroy(req, res) {}
+async function destroy(req, res) {
+  await Comment.destroy({
+    where: {
+      id: req.params.id,
+    },
+  });
+  res.redirect("/panel/bd-comments");
+}
 
 // Otros handlers...
 // ...

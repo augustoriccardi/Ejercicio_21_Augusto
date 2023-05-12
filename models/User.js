@@ -22,7 +22,7 @@ class User extends Model {
           type: DataTypes.STRING,
         },
         role: {
-          type: DataTypes.BOOLEAN,
+          type: DataTypes.BIGINT,
           defaultValue: false,
         },
       },

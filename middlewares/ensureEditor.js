@@ -1,5 +1,5 @@
-function ensureAdmin(req, res, next) {
-  if (req.user.role === 4) {
+function ensureEditor(req, res, next) {
+  if (req.user.role >= 3) {
     return next();
   } else {
     req.session.redirectTo = req.query.redirectTo;
@@ -7,4 +7,4 @@ function ensureAdmin(req, res, next) {
   }
 }
 
-module.exports = ensureAdmin;
+module.exports = ensureEditor;

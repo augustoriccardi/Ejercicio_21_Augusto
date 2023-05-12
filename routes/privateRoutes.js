@@ -1,7 +1,9 @@
 const express = require("express");
 const adminController = require("../controllers/adminController");
 const userController = require("../controllers/userController");
+const commentController = require("../controllers/commentController");
 const ensureAdmin = require("../middlewares/ensureAdmin");
+const ensureEditor = require("../middlewares/ensureEditor");
 const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
 const makeUserAvailableInViews = require("../middlewares/makeUserAvailableInViews");
 const router = express.Router();
@@ -33,14 +35,14 @@ router.get(
 router.get(
   "/bd-comments",
   ensureAuthenticated,
-  ensureAdmin,
+  ensureEditor,
   makeUserAvailableInViews,
   adminController.showComments,
 );
 router.get(
   "/bd-comments/crear",
   ensureAuthenticated,
-  ensureAdmin,
+  ensureEditor,
   makeUserAvailableInViews,
   adminController.editComment,
 );
@@ -50,11 +52,12 @@ router.delete("/bd-users/:id", adminController.destroyUser);
 router.get(
   "/bd-comments/:id/editar",
   ensureAuthenticated,
-  ensureAdmin,
+  ensureEditor,
   makeUserAvailableInViews,
   adminController.editComment,
 );
-router.patch("/bd-comments/:id", adminController.updateComment);
-router.delete("/bd-comments/:id", adminController.destroyUser);
+
+router.patch("/bd-comments/:id", ensureAuthenticated, adminController.updateComment);
+router.delete("/bd-comments/:id", ensureAuthenticated, ensureEditor, commentController.destroy);
 
 module.exports = router;

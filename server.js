@@ -1,5 +1,5 @@
-const { passport, passportConfig } = require("./config/passport");
 require("dotenv").config();
+const { passport, passportConfig } = require("./config/passport");
 const session = require("express-session");
 const express = require("express");
 const routes = require("./routes");

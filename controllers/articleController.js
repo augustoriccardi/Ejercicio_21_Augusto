@@ -2,18 +2,9 @@ const { Article, User, Comment } = require("../models");
 const formidable = require("formidable");
 const fs = require("fs");
 
-async function index(req, res) {
-  const articles = await Article.findAll({
-    where: {
-      userId: [2, 3, 4, 5],
-    },
-    include: {
-      model: User,
-      attributes: ["id", "firstname", "lastname"],
-    },
-  });
-  res.render("home", { articles });
-}
+// Display a listing of the resource.
+async function index(req, res) {}
+
 // Display the specified resource.
 async function show(req, res) {
   const article = await Article.findByPk(req.params.id, {

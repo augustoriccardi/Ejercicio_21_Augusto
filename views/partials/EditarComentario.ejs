@@ -1,0 +1,16 @@
+<form action="" method="post" class="d-flex flex-column gap-4">
+  <label class="form-label" for="contentComment">Ingrese el nuevo contenido del Comentario:</label>
+  <textarea
+    class="form-control"
+    name="content"
+    id="content"
+    cols="30"
+    rows="10"
+    placeholder="Contenido..."
+  >
+<%=comment.content %></textarea
+  >
+  <div class="d-flex justify-content-between">
+    <button type="submit" class="btn btn-success w-25">Actualizar</button>
+  </div>
+</form>
