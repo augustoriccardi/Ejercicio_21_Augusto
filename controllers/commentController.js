@@ -4,7 +4,6 @@ const { Comment, Article, User } = require("../models");
 async function index(req, res) {}
 
 // Display the specified resource.
-// Display the specified resource.
 async function show(req, res) {
   const article = await Article.findByPk(req.params.id, {
     include: [{ model: Comment }, { model: User }],

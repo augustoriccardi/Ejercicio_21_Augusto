@@ -19,7 +19,7 @@
   </head>
   <body class="">
     <% if (!user){%><%- include("./partials/navbar.ejs") %> <%- include('./partials/header') %> <% }
-    else if (!user.role) {%> <%- include("./partials/navbarUser.ejs") %> <%-
+    else if (!user.roleId) {%> <%- include("./partials/navbarUser.ejs") %> <%-
     include('./partials/header') %> <%} else {%> <%- include("./partials/navbarAdmin.ejs") %> <%-
     include('./partials/header') %> <%}%>
     <main class="container w-75 bg-white p-5">

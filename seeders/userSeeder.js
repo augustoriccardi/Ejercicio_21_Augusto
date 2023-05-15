@@ -11,7 +11,7 @@ module.exports = async () => {
       firstname: faker.name.firstName(),
       lastname: faker.name.lastName(),
       email: faker.internet.email(),
-      role: faker.datatype.number({ min: 1, max: 4 }),
+      roleId: faker.datatype.number({ min: 1, max: 4 }),
       password: "$2a$08$VdKXSM32Q0VxyygLbVLYHe.Axl1W09FbsnI7vR50/pdefg9/zknm.",
     });
   }

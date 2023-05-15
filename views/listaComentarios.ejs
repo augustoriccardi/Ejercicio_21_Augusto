@@ -18,9 +18,9 @@
     <link rel="stylesheet" href="/css/home.css" />
   </head>
   <body>
-    <% if (!user) {%> <%- include("./partials/navbar.ejs") %> <%} else if(user.role===2) {%> <%-
-    include("./partials/navbarUser.ejs") %> <%} else if (user.role===4){%> <%-
-    include("./partials/navbarAdmin.ejs")%><%} else if (user.role===3){%> <%-
+    <% if (!user) {%> <%- include("./partials/navbar.ejs") %> <%} else if(user.roleId===2) {%> <%-
+    include("./partials/navbarUser.ejs") %> <%} else if (user.roleId===4){%> <%-
+    include("./partials/navbarAdmin.ejs")%><%} else if (user.roleId===3){%> <%-
     include("./partials/navbarEditor.ejs") %> <%} %>
     <main>
       <div class="container" style="margin-top: 80px">

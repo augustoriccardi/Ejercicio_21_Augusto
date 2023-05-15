@@ -18,8 +18,7 @@
     <link rel="stylesheet" href="/css/home.css" />
   </head>
   <body>
-    <% if(!user.role) {%> <%- include("./partials/navbarUser.ejs") %> <%} else {%> <%-
-    include("./partials/navbarAdmin.ejs") %> <%} %>
+    <%- include("./partials/navbarAdmin.ejs") %>
     <main>
       <div class="container" style="margin-top: 80px">
         <div class="container my-4">
@@ -47,10 +46,10 @@
                   ${user.createdAt.getFullYear()}` %>
                 </td>
                 <td class="gap-2">
-                  <a href="/panel/bd-user/<%= user.id %>/editar" class="btn btn-primary">
+                  <a href="/panel/bd-users/<%= user.id %>/editar" class="btn btn-primary">
                     Editar
                   </a>
-                  <form action="/panel/bd-user/<%= user.id %>?_method=DELETE" method="post">
+                  <form action="/panel/bd-users/<%= user.id %>?_method=DELETE" method="post">
                     <button type="submit" class="btn btn-danger mt-2">Eliminar</button>
                   </form>
                 </td>

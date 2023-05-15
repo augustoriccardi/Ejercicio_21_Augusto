@@ -18,9 +18,9 @@
     <title>Panel Configuracion Administrador</title>
   </head>
   <body>
-    <% if (!user) {%> <%- include("./partials/navbar.ejs") %> <%} else if(user.role===2) {%> <%-
-    include("./partials/navbarUser.ejs") %> <%} else if (user.role===4){%> <%-
-    include("./partials/navbarAdmin.ejs")%><%} else if (user.role===3){%> <%-
+    <% if (!user) {%> <%- include("./partials/navbar.ejs") %> <%} else if(user.roleId===2) {%> <%-
+    include("./partials/navbarUser.ejs") %> <%} else if (user.roleId===4){%> <%-
+    include("./partials/navbarAdmin.ejs")%><%} else if (user.roleId===3){%> <%-
     include("./partials/navbarEditor.ejs") %> <%} %>
     <main class="d-flex align-items-center justify-content-center">
       <div class="container shadow rounded p-5 mt-3" style="max-width: 50%">

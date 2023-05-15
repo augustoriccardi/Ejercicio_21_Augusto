@@ -40,7 +40,6 @@ async function showUsers(req, res) {
   try {
     const users = await User.findAll({
       order: [["id", "DESC"]],
-      where: { role: 0 },
     });
     res.render("listaUsuarios", { users });
   } catch (error) {
@@ -89,7 +88,26 @@ async function updateUser(req, res) {
 }
 
 // Remove the specified resource from storage.
-async function destroyUser(req, res) {}
+async function destroyUser(req, res) {
+  const articles = await Article.findAll({ where: { userId: req.params.id } });
+
+  for (let article of articles) {
+    await Comment.destroy({ where: { articleId: article.id } });
+  }
+
+  await Article.destroy({
+    include: { all: true, nested: true },
+    where: {
+      userId: req.params.id,
+    },
+  });
+  await User.destroy({
+    where: {
+      id: req.params.id,
+    },
+  });
+  res.redirect("/panel/bd-users");
+}
 
 async function createComment(req, res) {
   return res.render("Panel", { modal: "CrarComentario" });

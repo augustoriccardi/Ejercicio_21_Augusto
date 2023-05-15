@@ -1,5 +1,5 @@
 function ensureEditor(req, res, next) {
-  if (req.user.role >= 3) {
+  if (req.user.roleId >= 3) {
     return next();
   } else {
     req.session.redirectTo = req.query.redirectTo;

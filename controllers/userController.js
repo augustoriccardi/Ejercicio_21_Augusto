@@ -9,7 +9,6 @@ async function showMyArticles(req, res) {
   try {
     const articles = await Article.findAll({
       order: [["id", "DESC"]],
-      include: User,
       where: { userId: req.user.id },
     });
     res.render("listaArticulos", { articles });

@@ -38,7 +38,7 @@
   <label for="image" class="form-label">Seleccionar nueva imagen del articulo:</label>
   <input type="file" name="Image" id="Image" class="btn btn-dark form-control" />
   <div class="d-flex justify-content-between">
-    <% if(!user.role) {%>
+    <%console.log(user)%> <% if(user.roleId>=2) {%>
     <a href="/usuarios/mis-articulos" class="btn btn-danger w-25">volver</a>
     <% } else {%>
     <a href="/panel/admin" class="btn btn-danger w-25">volver</a>

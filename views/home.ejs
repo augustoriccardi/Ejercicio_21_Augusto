@@ -19,11 +19,11 @@
   </head>
   <body>
     <% if (!user){%><%- include("./partials/navbar.ejs") %> <%- include('./partials/header') %> <% }
-    else if (user.role===2) {%> <%- include("./partials/navbarUser.ejs") %> <%-
-    include('./partials/header') %> <%} else if (user.role===4) {%> <%-
+    else if (user.roleId===2) {%> <%- include("./partials/navbarUser.ejs") %> <%-
+    include('./partials/header') %> <%} else if (user.roleId===4) {%> <%-
     include("./partials/navbarAdmin.ejs") %> <%- include('./partials/header') %> <%}else if
-    (user.role===3) {%> <%- include("./partials/navbarEditor.ejs") %> <%-
-    include('./partials/header') %> <%}else if (user.role===1) {%> <%-
+    (user.roleId===3) {%> <%- include("./partials/navbarEditor.ejs") %> <%-
+    include('./partials/header') %> <%}else if (user.roleId===1) {%> <%-
     include("./partials/navbarReader.ejs") %> <%- include('./partials/header') %> <%}%>
     <main>
       <div class="container">

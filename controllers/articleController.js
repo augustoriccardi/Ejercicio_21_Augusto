@@ -42,7 +42,7 @@ async function store(req, res) {
         image: files.image.newFilename,
         userId: req.user.id,
       });
-      if (!req.user.role) {
+      if (req.user.roleId === 2) {
         res.redirect("/usuarios/mis-articulos");
       } else {
         res.redirect("/panel/admin");
@@ -98,7 +98,7 @@ async function update(req, res) {
         }
       });
     }
-    if (!req.user.role) {
+    if (req.user.roleId < 4) {
       res.redirect("/usuarios/mis-articulos");
     } else {
       res.redirect("/panel/admin");
@@ -113,7 +113,7 @@ async function destroy(req, res) {
       id: req.params.id,
     },
   });
-  if (!req.user.role) {
+  if (!req.user.roleId) {
     res.redirect("/usuarios/mis-articulos");
   } else {
     res.redirect("/panel/admin");

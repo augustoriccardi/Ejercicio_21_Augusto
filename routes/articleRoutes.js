@@ -4,11 +4,28 @@ const articleController = require("../controllers/articleController");
 const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
 const makeUserAvailableInViews = require("../middlewares/makeUserAvailableInViews");
 
-router.get("/crear", ensureAuthenticated, makeUserAvailableInViews, articleController.create);
-router.post("/", ensureAuthenticated, articleController.store);
+//Middlewares de permisos
+const canCreateArticle = require("../middlewares/canCreateArticle");
+const canDeleteArticle = require("../middlewares/canDeleteArticle");
+const canEditArticle = require("../middlewares/canEditArticle");
+
+router.get(
+  "/crear",
+  ensureAuthenticated,
+  canCreateArticle,
+  makeUserAvailableInViews,
+  articleController.create,
+);
+router.post("/", ensureAuthenticated, canCreateArticle, articleController.store);
 router.get("/:id", makeUserAvailableInViews, makeUserAvailableInViews, articleController.show);
-router.get("/:id/editar", ensureAuthenticated, makeUserAvailableInViews, articleController.edit);
-router.patch("/:id", ensureAuthenticated, articleController.update);
-router.delete("/:id", ensureAuthenticated, articleController.destroy);
+router.get(
+  "/:id/editar",
+  ensureAuthenticated,
+  canEditArticle,
+  makeUserAvailableInViews,
+  articleController.edit,
+);
+router.patch("/:id", ensureAuthenticated, canEditArticle, articleController.update);
+router.delete("/:id", ensureAuthenticated, canDeleteArticle, articleController.destroy);
 
 module.exports = router;
