@@ -96,7 +96,6 @@ async function destroyUser(req, res) {
   }
 
   await Article.destroy({
-    include: { all: true, nested: true },
     where: {
       userId: req.params.id,
     },
